@@ -5,7 +5,7 @@ import traceback
 
 from pdbsync.cli import logger
 from pdbsync.core.constants import ROOT_SETTINGS, ROOT_DBS, SETTINGS_BASESRC, SETTINGS_BASEDEST, DB_DATA_HOST, \
-    DB_DATA_PORT, DB_DATA_USERNAME, DB_DATA_PASSWORD, DB_SRC, DB_DEST, DB_SQLS, DB_DATA_NAME
+    DB_DATA_PORT, DB_DATA_USERNAME, DB_DATA_PASSWORD, DB_SRC, DB_DEST, DB_DATA_NAME, DB_DATA_PRE_SQL, DB_DATA_AFTER_SQL
 from pdbsync.core.lib import auto_str, get_value_from_map
 
 
@@ -30,25 +30,26 @@ class PdbSyncConfigSettings(object):
 # 数据库(源+目标)
 #
 class PdbSyncConfigDb(object):
-    def __init__(self, src, dest, sqls):
+    def __init__(self, src, dest):
         self.src = src
         self.dest = dest
-        self.sqls = sqls
 
     def __repr__(self):
-        return "%s -> %s , %s" % (self.src, self.dest, self.sqls)
+        return "%s -> %s" % (self.src, self.dest)
 
 
 #
 # 数据库配置
 #
 class PdbSyncConfigDbData(object):
-    def __init__(self, host, port, username, password, db_name):
+    def __init__(self, host, port, username, password, db_name, pre_sql, after_sql):
         self.host = host
         self.port = port
         self.username = username
         self.password = password
         self.db_name = db_name
+        self.pre_sql = pre_sql
+        self.after_sql = after_sql
 
     def set_value_if_none(self, base_db):
         if base_db:
@@ -66,6 +67,24 @@ class PdbSyncConfigDbData(object):
     def __repr__(self):
         return "(%s:%s:%s:%s)" % (self.host, self.port, self.username, self.password)
 
+    def verify(self):
+        if not self.host:
+            logger.warn(str(self) + " lost host")
+            return False
+        if not self.port:
+            logger.warn(str(self) + " lost port")
+            return False
+        if not self.username:
+            logger.warn(str(self) + " lost username")
+            return False
+        if not self.password:
+            logger.warn(str(self) + "  lost password")
+            return False
+        if not self.db_name:
+            logger.warn(str(self) + " lost db_name")
+            return False
+        return True
+
 
 class PdbSyncConfigParser(object):
     @classmethod
@@ -76,20 +95,24 @@ class PdbSyncConfigParser(object):
 
                 src = get_value_from_map(db, DB_SRC)
                 dest = get_value_from_map(db, DB_DEST)
-                sqls = get_value_from_map(db, DB_SQLS)
 
                 cur_src = None
-                if src:
+                if src is not None:
                     cur_src = cls._parse_db_data(src)
                     cur_src.set_value_if_none(settings.basesrc)
+                    if not cur_src.verify():
+                        break
 
                 cur_dest = None
-                if dest:
+                if dest is not None:
                     cur_dest = cls._parse_db_data(dest)
                     cur_dest.set_value_if_none(settings.basedest)
+                    if not cur_dest.verify():
+                        break
 
-                cur_db = PdbSyncConfigDb(cur_src, cur_dest, sqls)
-                cur_dbs.append(cur_db)
+                if cur_src and cur_dest:
+                    cur_db = PdbSyncConfigDb(cur_src, cur_dest)
+                    cur_dbs.append(cur_db)
 
         return cur_dbs
 
@@ -100,7 +123,9 @@ class PdbSyncConfigParser(object):
         username = get_value_from_map(db_data, DB_DATA_USERNAME)
         password = get_value_from_map(db_data, DB_DATA_PASSWORD)
         db_name = get_value_from_map(db_data, DB_DATA_NAME)
-        return PdbSyncConfigDbData(host, port, username, password, db_name)
+        pre_sql = get_value_from_map(db_data, DB_DATA_PRE_SQL)
+        after_sql = get_value_from_map(db_data, DB_DATA_AFTER_SQL)
+        return PdbSyncConfigDbData(host, port, username, password, db_name, pre_sql, after_sql)
 
     @classmethod
     def _parse_settings(cls, settings):
@@ -143,6 +168,5 @@ class PdbSyncConfigParser(object):
 
             if config_data:
                 root_config = cls._parse_all(config_data)
-
-                for db in root_config.dbs:
-                    logger.info("db: %s" % db)
+                return root_config
+            return None

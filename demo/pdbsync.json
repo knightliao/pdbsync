@@ -19,18 +19,19 @@
                 "db_name": "disconf"
             },
             "dest": {
-                "db_name": "disconf2"
-            },
-            "sqls": "sql/disconf"
+                "db_name": "disconf2",
+                "pre_sql": "sql/disconf2/pre.sql",
+                "after_sql": "sql/disconf2/after.sql"
+            }
         },
         {
             "src": {
                 "db_name": "disconf"
             },
             "dest": {
-                "db_name": "disconf3"
-            },
-            "sqls": "sql/disconf"
+                "db_name": "disconf3",
+                "after_sql": "sql/disconf3/after.sql"
+            }
         }
     ]
 }

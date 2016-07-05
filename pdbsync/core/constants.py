@@ -12,6 +12,8 @@ DB_DATA_PORT = "port"
 DB_DATA_USERNAME = "username"
 DB_DATA_PASSWORD = "password"
 DB_DATA_NAME = "db_name"
+DB_DATA_PRE_SQL = "pre_sql"
+DB_DATA_AFTER_SQL = "after_sql"
 
 DB_SRC = "src"
 DB_DEST = "dest"

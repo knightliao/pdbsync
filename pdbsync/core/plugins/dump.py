@@ -4,18 +4,6 @@
 from pdbsync.core import logger
 
 
-class PyDumps(object):
-    def __init__(self, dbs):
-        self.dbs = dbs
-
-    def run(self):
-        for db in self.dbs:
-            logger.info("db: %s" % db)
-
-            pydump = PyDump(db.src, db.dest)
-            pydump.run()
-
-
 class PyDump(object):
     def __init__(self, src_db, dest_db):
         self.src_db = src_db

@@ -1,0 +1,10 @@
+DROP DATABASE IF EXISTS `disconf2`;
+CREATE DATABASE `disconf2`
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+
+DROP DATABASE IF EXISTS `disconf3`;
+CREATE DATABASE `disconf3`
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;

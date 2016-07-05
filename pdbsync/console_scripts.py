@@ -8,6 +8,7 @@ import time
 import pdbsync
 from pdbsync.cli.config_parser import PdbSyncConfigParser
 from pdbsync.cli.log import make_logging
+from pdbsync.core.sync import PdbSync
 
 pdbsync_file = 'pdbsync.json'
 
@@ -21,7 +22,11 @@ def main():
     time.sleep(1)
 
     # parser
-    PdbSyncConfigParser.do(pdbsync_file)
+    root_config = PdbSyncConfigParser.do(pdbsync_file)
+
+    if root_config:
+        sync = PdbSync(root_config.dbs)
+        sync.run()
 
 
 if __name__ == "__main__":

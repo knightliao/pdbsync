@@ -17,4 +17,4 @@ DB_DATA_AFTER_SQL = "after_sql"
 
 DB_SRC = "src"
 DB_DEST = "dest"
-DB_SQLS = "sqls"
+DB_IGNORE = "ignore"

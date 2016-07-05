@@ -12,7 +12,7 @@ class PdbSync(object):
     def _pre(self, db_data):
         if db_data.pre_sql:
             execute = PyExecute(db_data)
-            execute.run(db_data.pre_sql)
+            execute.run(db_data.pre_sql, False)
 
     def _after(self, db_data):
         if db_data.after_sql:

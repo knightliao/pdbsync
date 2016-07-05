@@ -11,8 +11,8 @@ class PyExecute(object):
 
     def run(self, sql):
         dest_db = self.dest_db
-        command = "mysql -h %s -P %s -u%s -p%s --default-character-set=utf8 < %s" % \
-                  (dest_db.host, dest_db.port, dest_db.username, dest_db.password, sql)
+        command = "mysql -h %s -P %s -u%s -p%s %s --default-character-set=utf8 < %s" % \
+                  (dest_db.host, dest_db.port, dest_db.username, dest_db.password, dest_db.db_name, sql)
 
         logger.info(command)
         subprocess.Popen(command, shell=True)

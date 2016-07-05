@@ -44,7 +44,7 @@ setup(
     url='https://github.com/knightliao/pdbsync',
     platforms='any',
     license="http://www.apache.org/licenses/LICENSE-2.0",
-    packages=find_packages(exclude=['tests', 'tests.*']),
+    packages=find_packages(exclude=['demo', 'tests', 'tests.*']),
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',

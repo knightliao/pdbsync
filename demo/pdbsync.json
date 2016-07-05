@@ -16,25 +16,21 @@
     "dbs": [
         {
             "src": {
-                "name": "disconf"
+                "db_name": "disconf"
             },
             "dest": {
-                "name": "disconf2"
+                "db_name": "disconf2"
             },
-            "sqls": {
-                "dir": "sql/disconf"
-            }
+            "sqls": "sql/disconf"
         },
         {
             "src": {
-                "name": "disconf"
+                "db_name": "disconf"
             },
             "dest": {
-                "name": "disconf3"
+                "db_name": "disconf3"
             },
-            "sqls": {
-                "dir": "sql/disconf"
-            }
+            "sqls": "sql/disconf"
         }
     ]
 }

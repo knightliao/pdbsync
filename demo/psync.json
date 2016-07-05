@@ -15,7 +15,7 @@
                 "password": "123456",
                 "name": "disconf2"
             },
-            "sql": {
+            "sqls": {
                 "dir": "sql/disconf"
             }
         },
@@ -34,7 +34,7 @@
                 "password": "123456",
                 "name": "disconf3"
             },
-            "sql": {
+            "sqls": {
                 "dir": "sql/disconf"
             }
         }

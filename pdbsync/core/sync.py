@@ -26,7 +26,7 @@ class PdbSync(object):
     def run(self):
 
         for db in self.dbs:
-            logger.info("db: %s" % db)
+            logger.info("================ db: %s =======================" % db)
 
             self._pre(db.dest)
             self._run(db.src, db.dest)

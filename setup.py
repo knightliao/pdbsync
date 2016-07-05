@@ -60,14 +60,14 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
     package_data={
-        'pfrock': ['logo.txt'],
-        'demo': ['pfrockfile.json'],
+        'pdbsync': ['logo.txt'],
+        'demo': ['pdbsync..json'],
     },
     install_requires=reqs,
     scripts=[],
     entry_points={
         'console_scripts': [
-            'pfrockpy = pfrock.console_scripts:main',
+            'pdbsync = pdbsync.console_scripts:main',
         ],
     }
 

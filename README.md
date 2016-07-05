@@ -11,6 +11,9 @@ configurable db sync tool using python
      888                                      .o..P'
     o888o                                     `Y8P'
     
+### install
+
+pip install pdbsync
 
 ### demo 
 
@@ -69,5 +72,5 @@ https://github.com/knightliao/pdbsync/tree/master/demo
     
 #### run 
 
-python demo.py
+pdbsync
 

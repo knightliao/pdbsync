@@ -66,7 +66,6 @@ https://github.com/knightliao/pdbsync/tree/master/demo
 
 - settings.basesrc 是所有 dbs[?].src db 的父类配置, 可被继承
 - settings.basedest 是所有 dbs[?].dest db 的父类配置, 可被继承
-- dbs[?].dest.pre_sql 是同步前的 SQL 执行文件, 一般在这里进行目标数据库的drop和create
 - dbs[?].dest.after_sql 是同步后的 SQL 执行文件, 一般在这里进行关键数据的隐藏
     
 #### run 

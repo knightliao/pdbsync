@@ -18,5 +18,5 @@ class PyExecute(object):
         else:
             command = "mysql -h %s -P %s -u%s -p%s --default-character-set=utf8 < %s" % \
                       (dest_db.host, dest_db.port, dest_db.username, dest_db.password, sql)
-        logger.info(command)
+        logger.debug(command)
         subprocess.check_call(command, shell=True)

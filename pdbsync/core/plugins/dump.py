@@ -17,5 +17,5 @@ class PyDump(object):
                   (src_db.host, src_db.port, src_db.username, src_db.password, src_db.db_name,
                    dest_db.host, dest_db.port, dest_db.username, dest_db.password, dest_db.db_name)
 
-        logger.info(command)
+        logger.debug(command)
         subprocess.check_call(command, shell=True)

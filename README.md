@@ -13,6 +13,8 @@ configurable db sync tool using python
     
 ### install
 
+version: 0.0.6
+
 pip install pdbsync
 
 ### demo 
@@ -71,4 +73,8 @@ https://github.com/knightliao/pdbsync/tree/master/demo
 #### run 
 
 pdbsync
+
+or 
+
+pdbsync -d
 

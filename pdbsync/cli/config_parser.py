@@ -65,7 +65,7 @@ class PdbSyncConfigDbData(object):
                 self.db_name = base_db.db_name
 
     def __repr__(self):
-        return "(%s:%s:%s:%s)" % (self.host, self.port, self.username, self.password)
+        return "(%s:%s:%s:****)" % (self.host, self.port, self.username)
 
     def verify(self):
         if not self.host:

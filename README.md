@@ -47,7 +47,6 @@ https://github.com/knightliao/pdbsync/tree/master/demo
                 },
                 "dest": {
                     "db_name": "disconf2",
-                    "pre_sql": "sql/disconf2/pre.sql",
                     "after_sql": "sql/disconf2/after.sql"
                 }
             },

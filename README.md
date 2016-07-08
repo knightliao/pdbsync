@@ -10,10 +10,16 @@ configurable db sync tool using python
      888bod8P' `Y8bod88P"  `Y8bod8P' 8""888P'     .8'     o888o o888o `Y8bod8P'
      888                                      .o..P'
     o888o                                     `Y8P'
+
+
+### requirement
+
+- Mac/Linux
+- install mysql-client
     
 ### install
 
-version: 0.0.7
+version: 0.0.8
 
 pip install pdbsync
 

@@ -19,8 +19,8 @@ class PdbSync(object):
             execute = PyExecute(db_data)
             execute.run(db_data.after_sql)
 
-    def _run(self, src_db, dest_db):
-        dump = PyDump(src_db, dest_db)
+    def _run(self, src_db, dest_db, ignore_tables):
+        dump = PyDump(src_db, dest_db, ignore_tables)
         dump.run()
 
     def run(self):
@@ -29,5 +29,5 @@ class PdbSync(object):
             logger.info("================ db: %s =======================" % db)
 
             self._pre(db.dest)
-            self._run(db.src, db.dest)
+            self._run(db.src, db.dest, db.ignore_tables)
             self._after(db.dest)

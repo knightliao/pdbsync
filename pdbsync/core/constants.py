@@ -17,4 +17,5 @@ DB_DATA_AFTER_SQL = "after_sql"
 
 DB_SRC = "src"
 DB_DEST = "dest"
+TABLE_IGNORE = "ignore_tables"
 DB_IGNORE = "ignore"

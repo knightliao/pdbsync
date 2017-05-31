@@ -5,7 +5,8 @@ import traceback
 
 from pdbsync.cli import logger
 from pdbsync.core.constants import ROOT_SETTINGS, ROOT_DBS, SETTINGS_BASESRC, SETTINGS_BASEDEST, DB_DATA_HOST, \
-    DB_DATA_PORT, DB_DATA_USERNAME, DB_DATA_PASSWORD, DB_SRC, DB_DEST, DB_DATA_NAME, DB_DATA_PRE_SQL, DB_DATA_AFTER_SQL
+    DB_DATA_PORT, DB_DATA_USERNAME, DB_DATA_PASSWORD, DB_SRC, DB_DEST, DB_DATA_NAME, DB_DATA_PRE_SQL, DB_DATA_AFTER_SQL, \
+    TABLE_IGNORE
 from pdbsync.core.lib import auto_str, get_value_from_map
 
 
@@ -30,9 +31,10 @@ class PdbSyncConfigSettings(object):
 # 数据库(源+目标)
 #
 class PdbSyncConfigDb(object):
-    def __init__(self, src, dest):
+    def __init__(self, src, dest, ignore_tables):
         self.src = src
         self.dest = dest
+        self.ignore_tables = ignore_tables
 
     def __repr__(self):
         return "%s -> %s" % (self.src, self.dest)
@@ -95,6 +97,7 @@ class PdbSyncConfigParser(object):
 
                 src = get_value_from_map(db, DB_SRC)
                 dest = get_value_from_map(db, DB_DEST)
+                ignore_tables = get_value_from_map(db, TABLE_IGNORE, default=[])
 
                 cur_src = None
                 if src is not None:
@@ -111,7 +114,7 @@ class PdbSyncConfigParser(object):
                         break
 
                 if cur_src and cur_dest:
-                    cur_db = PdbSyncConfigDb(cur_src, cur_dest)
+                    cur_db = PdbSyncConfigDb(cur_src, cur_dest, ignore_tables)
                     cur_dbs.append(cur_db)
 
         return cur_dbs

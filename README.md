@@ -1,6 +1,8 @@
 # pdbsync
 configurable db sync tool using python
 
+可配置化的、Python写的多数据库同步工具。
+
                      .o8   .o8
                     "888  "888
     oo.ooooo.   .oooo888   888oooo.   .oooo.o oooo    ooo ooo. .oo.    .ooooo.
